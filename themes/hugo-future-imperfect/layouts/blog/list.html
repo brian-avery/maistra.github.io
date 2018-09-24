@@ -1,4 +1,4 @@
-{{ partial "header" . }}
+ {{ partial "header" . }}
 <script>
     //getSummary returns the first 80 words of the provided article
     function getSummary(article) {
@@ -48,7 +48,6 @@
                           </ul> \
                         </footer> </article>";
 
-
                 appendElement("#rss-feeds", newChild);
             })
         })
@@ -58,6 +57,9 @@
 
     getRSS(RH_FEED_URL);
     getRSS(OS_FEED_URL);
+            appendElement("#rss-feeds", newChild);
+        })
+    })
 
 </script>
 
