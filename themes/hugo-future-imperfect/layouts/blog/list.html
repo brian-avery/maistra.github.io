@@ -26,6 +26,7 @@
             if (!feed || feed.items.length == 0) {
                 return
             }
+            console.log(FEED_URL, ":", feed)
             feed.items.forEach(function (entry) {
                 let newChild = document.createElement('div');
                 let link = entry.title.split(' ').join(''); //trim spaces from title so we can include it in the URL
@@ -56,7 +57,7 @@
     const OS_FEED_URL = '/blog/sources/openshift/tag/istio/feed/atom/'
 
     getRSS(OS_FEED_URL);
-    /*getRSS(OS_FEED_URL);*/
+    getRSS(OS_FEED_URL);
 </script>
 
 <!-- Main -->
