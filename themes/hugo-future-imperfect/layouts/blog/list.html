@@ -20,15 +20,9 @@
 <script>
     //Note: to debug locally, CORS Proxy must be set and the FEED_URL must be set to a full URL
     //See: https://github.com/bobby-brennan/rss-parser
-    function getRSS(FEED_URL) {
-        let parser = new RSSParser();
-        parser.parseURL(FEED_URL, function (err, feed) {
-            if (!feed || feed.items.length == 0) {
-                return
-            }
-            console.log(FEED_URL, ":", feed)
-            feed.items.forEach(function (entry) {
-                let newChild = document.createElement('div');
+
+    function appendArticle(entry) {
+        let newChild = document.createElement('div');
                 let link = entry.title.split(' ').join(''); //trim spaces from title so we can include it in the URL
                 newChild.innerHTML = "<article class=\"post\"> \
             <header> \
@@ -50,14 +44,26 @@
                         </footer> </article>";
 
                 appendElement("#rss-feeds", newChild);
+    }
+
+    function addFeed(FEED_URL) {
+        let parser = new RSSParser();
+        parser.parseURL(FEED_URL, function (err, feed) {
+            if (!feed || feed.items.length == 0) {
+                return
+            }
+            console.log(FEED_URL, ":", feed)
+            feed.items.forEach(function (entry) {
+                /* Need date so we can sort by it... id? */
+                appendArticle(entry);
             })
         })
     }
     const RH_FEED_URL = '/blog/sources/rhdevel/category/service-mesh/feed/atom/'
     const OS_FEED_URL = '/blog/sources/openshift/tag/istio/feed/atom/'
 
-    getRSS(RH_FEED_URL);
-    getRSS(OS_FEED_URL);
+    addFeed(RH_FEED_URL);
+    addFeed(OS_FEED_URL);
 </script>
 
 <!-- Main -->
