@@ -87,7 +87,7 @@ sysctl vm.max_map_count=262144
 Maistra 0.12 supports plaintext and strict mutual TLS only. Permissive mode does not yet work.
 {{% /notice %}}
 
-{{% notice notice %}}
+{{% notice tip %}}
 Kiali does not currently support the Jaeger operator.
 {{% /notice %}}
 
@@ -154,7 +154,7 @@ Maistra supports a shorthand of *smcp* for *ServiceMeshControlPlane* and *smmr* 
 ==== Single-Tenant Installation
 
 
-In order to deploy the Istio Control Plane, we need to create a custom resource such as the one in the following example. This custom resource *must* be created in the *istio-system* namespace. For more information on the parameters and their configuration please see the link:../custom-install[custom installation documentation].
+Single tenancy is disabled by default in TP12. To enable it, set multitenant to false in your `ServicemeshControlPlane`. In order to deploy the Istio Control Plane, we need to create a custom resource such as the one in the following example. This custom resource *must* be created in the *istio-system* namespace. For more information on the parameters and their configuration please see the link:../custom-install[custom installation documentation].
 
 {{< snippet_markdown name="istio_installation_minimal" >}}
 
@@ -166,8 +166,7 @@ oc create -n istio-system -f <name of file>
 ```
 
 ==== Multi-Tenant Installation
-To enable multitenancy, set the *multitenant: false* field in the control plane example
-to true, create a namespace to contain the control plane, and create the custom resource in that namespace.
+Multitenancy is enabled by default in TP12. To use it, create a namespace to contain the control plane, and create the custom resource in that namespace.
 
 ===== ServiceMeshMemberRoll
 The *ServiceMeshMemberRoll* resource configures which namespaces belong to a control plane.
