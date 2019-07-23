@@ -1,0 +1,201 @@
+{{ partial "header.html" . }}
+<!-- Main -->
+<script>
+  let customResource = ""
+
+  let crHeader = `apiVersion: istio.openshift.com/v1alpha3
+        kind: ControlPlane
+        metadata:`
+
+  function watch(fieldName, variableName) {
+    let element = document.getElementById(fieldName)
+    let valChanged = function () {
+
+      if (element.type == "checkbox") {
+        fields[variableName] = element.checked
+      } else if (element.type == "text") {
+        fields[variableName] = element.value
+      } else if (element.type == "select-one") {
+        fields[variableName] = element.value
+      } else {
+        console.error("Type not recognized: ", element.type)
+      }
+      customResource = generateCR();
+      crResult = document.getElementById("cr_result").innerHTML = customResource;
+      hljs.initHighlighting.called = false;
+      hljs.initHighlighting();
+
+
+    }
+    element.addEventListener("change", valChanged, false);
+    valChanged();
+  }
+
+  window.addEventListener("load", function () {
+    fields = [];
+    customResource = '';
+    watch("cr_name", "crName");
+    watch("enable_autoscale", "enableAutoscale");
+    watch("use_limited_resources", "useLimitedResources");
+    watch("use_ior", "useIOR");
+    watch("enable_tracing", "enableTracing");
+    watch("kiali_enabled", "kialiEnabled");
+    watch("kiali_auth_type", "kialiAuthType")
+    watch("kiali_auth_username", "kialiAuthUsername")
+    watch("kiali_auth_password", "kialiAuthPassword")
+
+  })
+
+
+  function generateCR() {
+    var useLimitedResources = fields["useLimitedResources"];
+    let proxyUseLimitedResources = useLimitedResources ? `resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 128Mi
+    `: ''
+
+    let telemetryUseLimitedResources = useLimitedResources ? `resources:
+          requests:
+            cpu: 100m
+            memory: 1G
+          limits:
+            cpu: 500m
+            memory: 4G
+    `: ''
+
+    let autoScalingUseLimitedResources = useLimitedResources ? true : fields["enableAutoscale"]
+
+    let kialiAuth = fields["kialiAuthType"] == "credentials" ? `dashboard:
+        user: ${fields["kialiAuthUsername"]}
+        passphrase: ${fields["kialiAuthPassword"]}` : ``
+
+    let kiali = fields["kialiEnabled"] ? `kiali:
+      enabled: true
+      ${kialiAuth}` : ``
+
+    let yaml = `apiVersion: istio.openshift.com/v1alpha3
+kind: ControlPlane
+metadata:
+  name: ${fields["crName"]}
+spec:
+  istio:
+    global:
+      controlPlaneSecurityEnabled: true
+      mtls:
+        enabled: true
+
+      proxy:
+       ${proxyUseLimitedResources}
+    gateways:
+      istio-egressgateway:
+        autoscaleEnabled: ${autoScalingUseLimitedResources}
+      istio-ingressgateway:
+        autoscaleEnabled: ${autoScalingUseLimitedResources}
+        ior_enabled: ${fields["useIOR"]}
+
+    mixer:
+      policy:
+        autoscaleEnabled: ${autoScalingUseLimitedResources}
+
+      telemetry:
+        autoscaleEnabled: ${autoScalingUseLimitedResources}
+    pilot:
+      autoscaleEnabled: ${autoScalingUseLimitedResources}
+      traceSampling: 100.0
+
+    ${kiali}
+
+    tracing:
+      # change to false to disable tracing (i.e. jaeger)
+      enabled: ${fields["useIOR"]}`;
+
+    return yaml;
+  }
+
+  function downloadCR(customResource) {
+    const contentType = 'application/yaml';
+    const blob = new Blob([customResource], { type: contentType });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
+  }
+</script>
+<div id="main">
+  Name: <input type="text" id="cr_name" value="basic-install"><br>
+  Use limited resources: <input type="checkbox" id="use_limited_resources" checked=true><br>
+  Enable autoscaling: <input type="checkbox" id="enable_autoscale"><br>
+  Enable tracing: <input type="checkbox" id="enable_tracing"><br>
+  Use 3 Scale: <input type="checkbox" id="enable_3scale"><br>
+  Auto-configure OpenShift Routing: <input type="checkbox" id="use_ior"><br>
+
+  <div class="expand">
+    <div class="expand-label" style="cursor: pointer;"
+      onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+      <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+      <span>
+        Istio
+      </span>
+    </div>
+    <div class="expand-content" style="display: none;">
+      FOO2
+    </div>
+  </div>
+
+  <div class="expand">
+    <div class="expand-label" style="cursor: pointer;"
+      onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+      <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+      <span>
+        Kiali
+      </span>
+    </div>
+    <div class="expand-content" style="display: none;">
+      Enabled: <input type="checkbox" id="kiali_enabled" checked=true><br>
+      Authentication Type: <select id="kiali_auth_type" value="credentials">
+        <option value="credentials">Credentials</option>
+        <option value="os_oauth">OpenShift Authentication</option>
+      </select>
+      Username: <input type="text" id="kiali_auth_username" value="admin"><br>
+      Password: <input type="text" id="kiali_auth_password" value="admin"><br>
+
+
+      <br>
+    </div>
+  </div>
+
+
+  <div class="expand">
+    <div class="expand-label" style="cursor: pointer;"
+      onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+      <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+      <span>
+        3 Scale
+      </span>
+    </div>
+    <div class="expand-content" style="display: none;">
+      FOO2
+    </div>
+  </div>
+
+  <div class="expand">
+    <div class="expand-label" style="cursor: pointer;"
+      onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+      <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+      <span>
+        Launcher
+      </span>
+    </div>
+    <div class="expand-content" style="display: none;">
+      FOO2
+    </div>
+  </div>
+
+  Result:
+  <pre class="highlight"><code class="language-yaml" data-lang="yaml" id="cr_result"></code></pre>
+
+  <a onClick="downloadCR(customResource)">Download</a>
+</div>
+{{ partial "footer.html" . }}
