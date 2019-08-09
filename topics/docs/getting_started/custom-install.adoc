@@ -16,6 +16,13 @@ Maistra uses the istio-operator, a custom installer built around Istio's helm ch
 
 {{< snippet_markdown name="istio_installation_auth" >}}
 
+## General Parameters
+[options="header"]
+|=======
+|Parameter |Description |Default
+|template|Templates are used to inherit settings from another SMCP | default
+|=======
+
 ## [[istio_globals]] Istio Globals
 
 [source,yaml]

@@ -187,6 +187,57 @@ The control plane processes the *ServiceMeshMemberRoll* when: the *ServiceMeshMe
 the *ServicemeshControlPlane* in the same project is created or updated, or a project in the *ServiceMeshMemberRoll* is created or deleted.
 {{% /notice %}}
 
+
+:leveloffset: +2
+
+{{< snippet_markdown name="verify_install" >}}
+
+:leveloffset: -2
+
+== Control Plane Templates
+Templates follow the same syntax as a *ServiceMeshControlPlane* and allow users to inherit settings in a hierarchical fashion. The operator
+comes with a built-in `default` template containing the default settings for OpenShift Service Mesh or Maistra depending on the operator.
+To add custom templates, create a ConfigMap called `smcp-templates` in the istio-operator project. This ConfigMap will contain a collection
+of templates to use. This ConfigMap must then be mounted in the operator at `/usr/local/share/istio-operator/templates/`.
+
+=== Creating the ConfigMap
+To create the ConfigMap, execute the following, substituting templates-directory for a directory containing a collection 
+of *ServiceMeshControlPlane* files to use as templates. The name of the template will match the name of the file.
+
+```
+ oc create configmap --from-file=templates-directory smcp-templates -n istio-operator
+```
+Next, instruct the operator to use the smcp-templates ConfigMap. 
+
+Edit the operator deployment.
+
+```
+oc edit deployment -n istio-operator
+```
+
+In the editor, add a volume mount and volume as shown below.
+
+```
+volumeMounts:
+    - name: smcp-templates
+      mountPath: /usr/local/share/istio-operator/templates/
+volumes:
+    - name: config-volume
+      configMap:
+        name: smcp-templates
+```
+
+Templates can now be referenced by adding a *template* parameter to the *ServiceMeshControlPlane*.
+```
+apiVersion: maistra.io/v1
+kind: ServiceMeshControlPlane
+metadata:
+  name: minimal-install
+spec:
+  template: default
+```
+
+
 == Uninstalling Maistra
 
 [[remove_control_plane]]
