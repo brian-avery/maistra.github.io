@@ -20,7 +20,7 @@ Maistra uses the istio-operator, a custom installer built around Istio's helm ch
 [options="header"]
 |=======
 |Parameter |Description |Default
-|template|Templates are used to inherit settings from another SMCP | default
+|template|A template references a ServiceMeshControlPlane referenced in the smcp-templates ConfigMap from which configuration should be inherited. | default
 |=======
 
 ## [[istio_globals]] Istio Globals
