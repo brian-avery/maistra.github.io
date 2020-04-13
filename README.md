@@ -1,11 +1,11 @@
 
-# OpenShift Service Mesh
+# OKD Service Mesh
 
 This repository contains documentation for the community release of OpenShift Service Mesh, based on the upstream Istio project.  This README provides information about this documentation repository. The site can be viewed at maistra.io.
 
 ## Getting Started
 
-The OpenShift Service mesh documentation is written in [Asciidoc](http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/).  This structure of this repository has been designed to work with both the upstream and downstream toolsets.  To generate the documentation, you should install the following tools:
+The OKD Service mesh documentation is written in [Asciidoc](http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/).  This structure of this repository has been designed to work with both the upstream and downstream toolsets.  To generate the documentation, you should install the following tools:
 
 * [Hugo](https://gohugo.io/)
 * [Asciidoctor](http://asciidoctor.org/docs/install-toolchain/). The downstream (product) documentation toolset requires asciidoc, and while the main content format for Hugo is markdown, Hugo also [supports asciidoc files](https://gohugo.io/content-management/formats/#additional-formats-through-external-helpers) by calling Asciidoctor.
