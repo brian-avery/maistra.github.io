@@ -12,7 +12,7 @@ The OpenShift Service mesh documentation is written in [Asciidoc](http://asciido
 * Text editor of your choice, for example the [Atom](https://atom.io/) text editor has several useful [packages](https://atom.io/packages) that make it easier to work with asciidoc and Hugo.
 
 ## Repository Structure
-Hugo assumes that the same structure that organizes your source content is used to organize the rendered site.
+Hugo asumers that the same structure that organizes your source content is used to organize the rendered site.
 
 
 This repository uses the following directory structure:
