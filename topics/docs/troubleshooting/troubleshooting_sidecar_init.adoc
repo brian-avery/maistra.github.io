@@ -7,7 +7,7 @@ description: "This document describes common issues experienced with regards to 
 
 pass:[<!-- vale Vale.Spelling = NO -->]
 
-=== iptables v1.6.0: can't initialize iptables table `nat': Table does not exist (do you need to insmod?)
+== iptables v1.6.0: can't initialize iptables table `nat': Table does not exist (do you need to insmod?)
 
 pass:[<!-- vale Vale.Spelling = YES -->] 
 
