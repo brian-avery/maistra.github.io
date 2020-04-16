@@ -53,11 +53,9 @@ master-restart controllers
 
 ==== Updating the Nodes
 
-To run the Elasticsearch application, it is necessary to make a change to the kernel configuration on each node. This change will be handled through the *sysctl* service.
+To run the Elasticsearch application, it is necessary to make a change to the kernel configuration on each node.
 
-Make the following changes on each node within your installation
-
-- Create a file named */etc/sysctl.d/99-elasticsearch.conf* with the following contents: `vm.max_map_count = 262144`
+- Create a file named `/etc/sysctl.d/99-elasticsearch.conf` with the following contents: `vm.max_map_count = 262144`
 
 - Execute the following command:
 
