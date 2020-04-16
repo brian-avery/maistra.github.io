@@ -24,8 +24,6 @@ Open `http://grafana-istio-system.127.0.0.1.nip.io` in a browser. You should see
 
 image::grafana-home-screen.png[]
 
-
-
 == Istio Mesh Metrics
 
 Select `Istio Mesh Dashboard` from the drop-down list in the top left corner to see the mesh metrics:

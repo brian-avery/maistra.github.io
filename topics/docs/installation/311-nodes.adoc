@@ -23,7 +23,7 @@ Then each individual Deployment requiring automatic injection needs to be modifi
 
 First, make the following changes on each master within your installation.
 
-- Change to the directory containing the master configuration file (e.g. /etc/origin/master/master-config.yaml)
+- Change to the directory containing the master configuration file (e.g. `/etc/origin/master/master-config.yaml`)
 - Create a file named `master-config.patch` with the following contents
 
 [source,yaml]
