@@ -1,10 +1,12 @@
 
 {{ $maistraBranch := "" }}
-{{ range site.Data.releases }}
-{{ if eq .version site.Data.release.maistraVersion  }}
+{{ range .Site.Data.releases }}
+{{ if eq .version .Site.Data.release.maistraVersion  }}
 {{ $maistraBranch = .maistraBranch }}
-{{ $maistraBranch }}
+{{ return $maistraBranch }}
 {{ end}}
 {{ end }}
 
-{{ return $maistraBranch }}
+{{ range sort .Site.Data.releases "version" "desc" }}
+{{ . }}
+{{end }}

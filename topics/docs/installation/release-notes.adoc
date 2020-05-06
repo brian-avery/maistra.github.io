@@ -6,10 +6,6 @@ description: "This lists the Maistra releases."
 weight: 0
 ---
 
-{{< release-notes-table >}}
-
-{{< maistraBranch >}}
-
 == Security Issues
 
 {{% notice warning %}}
@@ -20,6 +16,7 @@ these fixes are not included in a Maistra release until the next general release
 
 The following table lists the versions of components in different releases.
 
+{{< release-notes-table >}}
 
 [[maistra-1.1.0]]
 == Maistra 1.1.0
