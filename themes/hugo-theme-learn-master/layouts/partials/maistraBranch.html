@@ -1,0 +1,10 @@
+
+{{ $maistraBranch := "" }}
+{{ range site.Data.releases }}
+{{ if eq .version site.Data.release.maistraVersion  }}
+{{ $maistraBranch = .maistraBranch }}
+{{ $maistraBranch }}
+{{ end}}
+{{ end }}
+
+{{ return $maistraBranch }}
