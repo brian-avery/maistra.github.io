@@ -10,9 +10,9 @@ hidden: true
 
 Before Maistra can be installed into an existing installation it is necessary to make several changes to the master configuration and each of the schedulable nodes. These changes enable features that are required within Istio and also ensure that Elasticsearch functions correctly.
 
-{{% notice info %}}
+{{< notice info >}}
 The master/node updates discussed below are not necessary in OCP/OKD 4.1
-{{% /notice %}}
+{{< /notice >}}
 
 === Updating the master
 

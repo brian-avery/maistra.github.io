@@ -8,11 +8,11 @@ weight: 0
 
 == Security Issues
 
-{{% notice warning %}}
+{{< notice warning >}}
 Occasionally, security issues are found in Maistra. When issues are discovered, a new release
 of OpenShift Service Mesh is made to include fixes for these vulnerabilities. However,
 these fixes are not included in a Maistra release until the next general release.
-{{% /notice %}}
+{{< /notice >}}
 
 The following table lists the versions of components in different releases.
 

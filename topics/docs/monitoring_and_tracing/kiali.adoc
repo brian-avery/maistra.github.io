@@ -7,11 +7,11 @@ weight: 4
 ---
 :imagesdir: ../images
 
-{{% notice info %}}
+{{< notice info >}}
 This document assumes that you installed Kiali as part of your installation. If not, please
 install the link:{{< ref "operator-installation.adoc" >}}[Kiali operator]  and update your
 link:{{< ref "controlplane.adoc" >}}[SMCP] before continuing.
-{{% /notice %}}
+{{< /notice >}}
 
 {{< snippet_markdown name="before_you_begin_bookinfo" >}}
 

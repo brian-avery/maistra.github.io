@@ -22,9 +22,9 @@ as defined link:../configuring-members[here].
 
 Set the annotation's value to `true` for injection to occur.
 
-{{% notice info %}}
+{{< notice info >}}
 Upstream Istio community installations require a specific label on the project after which all pods in that project are injected with the sidecar. The OpenShift Service Mesh approach requires you to opt in to injection using an annotation with no need to label projects. This method requires fewer privileges and does not conflict with other OpenShift capabilities such as builder pods.
-{{% /notice %}}
+{{< /notice >}}
 
 This example shows the annotation used within the sleep test application. The
 additional proxy related containers are included when you create the application

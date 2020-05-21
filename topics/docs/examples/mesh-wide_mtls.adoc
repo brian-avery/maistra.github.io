@@ -10,9 +10,9 @@ When using mutual Transport Layer Security (mTLS), client and server can verify 
 
 By default, Maistra is configured in permissive mode: the sidecars in a Maistra mesh accept both plain-text traffic and connections that are encrypted using mTLS. For outgoing traffic, the sidecars default to plain-text, unencrypted connections. By using Istio configuration objects, the behaviour can be fine-tuned to your needs. One of the possible configurations is strict mTLS mode. This means that sidecars only accept incoming traffic if it is encrypted, and they will default to using encrypted connections to talk to other services in the mesh.
 
-{{% notice tip %}}
+{{< notice tip >}}
 This article explains the role and setup of the required Istio and Maistra resources to enable strict mTLS across your service mesh. If you just want to set strict mode quickly, you can achieve the same result by setting `.Spec.istio.global.mtls.enabled` to `true` in your ServiceMeshControlPlane resource. The operator will then create the required resources for you.
-{{% /notice %}}
+{{< /notice >}}
 
 There are separate configuration objects for incoming and outgoing connections, so this will entail two steps:
 
@@ -37,9 +37,9 @@ spec:
 
 This will instruct all sidecars in the mesh to only accept mTLS connections. Note that this resource has to be named 'default' and it has to be created in your control plane's project.
 
-{{% notice tip %}}
+{{< notice tip >}}
 This resource does not exist in upstream Istio, it has been added to Maistra. It replaces the upstream MeshPolicy, which is cluster-scoped. For more information, see the link:../../comparison-with-istio/#cluster_scoped_resources[comparison of Maistra and upstream Istio].
-{{% /notice %}}
+{{< /notice >}}
 
 === Creating the DestinationRule
 

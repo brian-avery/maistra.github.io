@@ -27,9 +27,9 @@ $ export BOOKINFO_NS=bookinfo
 $ oc new-project ${BOOKINFO_NS}
 ----
 
-{{% notice info %}}
+{{< notice info >}}
 In OpenShift 3, Security Context Constraints (SCC) must be configured for the Bookinfo application. Additional information can be found link:../../installation/application-requirements/[here].
-{{% /notice %}}
+{{< /notice >}}
 
 === Add Bookinfo project to the Service Mesh
 To add the bookinfo project to the control plane SMMR:
@@ -48,9 +48,9 @@ $ oc -n ${CONTROL_PLANE_NS} edit smmr default
 servicemeshmemberroll.maistra.io/default edited
 ----
 
-{{% notice tip %}}
+{{< notice tip >}}
 At this point Bookinfo project is part of the Service Mesh, meaning that when pods (link:../../installation/automatic-injection/[with the proper annotation], which is the case of our Bookinfo deployment below) are deployed in Bookinfo project they will get the sidecar attached and thus will become part of the mesh.
-{{% /notice %}}
+{{< /notice >}}
 
 === Deploy Bookinfo Application
 

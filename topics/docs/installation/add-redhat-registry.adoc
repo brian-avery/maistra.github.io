@@ -9,9 +9,9 @@ hidden: true
 ---
 
 
-{{% notice note %}}
+{{< notice note >}}
 These instructions apply to `OpenShift 3.11` on premises only.
-{{% /notice %}}
+{{< /notice >}}
 
 To access the private registry.redhat.io registry from OpenShift, please execute
 the following:

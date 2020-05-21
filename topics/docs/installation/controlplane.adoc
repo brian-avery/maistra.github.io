@@ -56,9 +56,9 @@ To create a control plane, open the OpenShift web console in a Web browser and c
 
 === Removing a control plane
 
-{{% notice note %}}
+{{< notice note >}}
 Substitute the proper project below if the controlplane was created in a project other than `istio-system`.
-{{% /notice %}}
+{{< /notice >}}
 
 The following steps will remove Istio from an existing installation. It can be
 executed by any user in the `maistra-admin` `ClusterRoleBinding` for the control plane project.

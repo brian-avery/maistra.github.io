@@ -55,9 +55,9 @@ charts. Many of the parameters supported by the installer are shown below.
 |=======
 |Parameter |Description |Default
 |`disablePolicyChecks`
-|This parameter enables/disables policy checks. {{% notice info %}}
+|This parameter enables/disables policy checks. {{< notice info >}}
 `disablePolicyChecks` must be false for 3scale to work.
-{{% /notice %}}
+{{< /notice >}}
 | `true`
 |`policyCheckFailOpen`
 |This parameter indicates whether traffic should be allowed to pass through Envoy when the mixer policy service cannot be reached.
@@ -305,9 +305,9 @@ These are the resources requested and may vary depending on your environment.
 | none
 |=======
 
-{{% notice tip %}}
+{{< notice tip >}}
 If you intend to use a custom image, you must override all three values of `hub` and `image`. The tag must match that expected by Kiali.
-{{% /notice %}}
+{{< /notice >}}
 
 [[kiali_dashboard]]
 === istio->kiali->dashboard
@@ -391,9 +391,9 @@ These parameters apply in the `production-elasticsearch` template only.
 
 == 3scale
 
-{{% notice info %}}
+{{< notice info >}}
 disablePolicyChecks must be false for 3scale to work.
-{{% /notice %}}
+{{< /notice >}}
 
 [source,yaml,subs="attributes"]
 ----

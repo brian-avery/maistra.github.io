@@ -5,9 +5,9 @@ category: "Examples"
 description: "Configure Maistra to enforce RBAC rules for all communication inside the service mesh."
 ---
 
-{{% notice info %}}
+{{< notice info >}}
 Using RBAC policies requires mTLS strict mode. For information about how to enable it, see link:../mesh-wide_mtls/[Enabling Mesh-wide Strict mTLS].
-{{% /notice %}}
+{{< /notice >}}
 
 == Introduction
 
@@ -30,9 +30,9 @@ spec:
   mode: 'ON'
 ----
 
-{{% notice tip %}}
+{{< notice tip >}}
 This resource does not exist in upstream Istio, it has been added to Maistra. It replaces the upstream ClusterRbacConfig, which is cluster-scoped. For more information, see the link:../../comparison-with-istio/#cluster_scoped_resources[comparison of Maistra and upstream Istio].
-{{% /notice %}}
+{{< /notice >}}
 
 === See also
 
