@@ -1,10 +1,10 @@
-<nav id="sidebar" class="{{if $.Site.Params.showVisitedLinks }}showVisitedLinks{{end}}">
+<nav id="sidebar" class="{{if $.Site.Params.showVisitedLinks }}showVisitedLinks{{end}}" style="margin-top: 3%;">
 
   {{ $currentNode := . }}
   {{ $showvisitedlinks := .Site.Params.showVisitedLinks }}
-  <div id="header-wrapper">
+  <!---<div id="header-wrapper">
     <div id="header">
-      {{ partial "logo.html" . }}
+      
       <font style="color:#fff; font-weight: bold">
        Version {{ .Site.Data.release.maistraVersion}}
       </font>
@@ -12,7 +12,7 @@
     {{if not .Site.Params.disableSearch}}
     {{ partial "search.html" . }}
     {{end}}
-  </div>
+  </div>--->
 
   <div class="highlightable">
     <ul class="topics">
@@ -32,18 +32,7 @@
     </ul>
 
     {{ $disableShortcutsTitle := .Site.Params.DisableShortcutsTitle}}
-    {{with .Site.Menus.shortcuts}}
-    <section id="shortcuts">
-      <h3>{{ if not $disableShortcutsTitle}}{{ T "Shortcuts-Title"}}{{ end }}</h3>
-      <ul>
-        {{ range sort . "Weight"}}
-        <li>
-          {{.Pre}}<a class="padding" href="{{.URL | absLangURL }}">{{safeHTML .Name}}</a>{{.Post}}
-        </li>
-        {{end}}
-      </ul>
-    </section>
-    {{end}}
+   
 
     {{ if or .Site.IsMultiLingual $showvisitedlinks }}
     <section id="prefooter">

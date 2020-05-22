@@ -33,14 +33,18 @@
         }
       {{ end }}
     </style>
+
+
     {{ partial "custom-header.html" . }}
   </head>
   <body class="" data-url="{{ .RelPermalink }}">
+
+    {{partial "topbar.html" . }}
     {{ partial "menu.html" . }}
         <section id="body">
         <div id="overlay"></div>
         <div class="padding highlightable">
-              {{if not .IsHome}}
+              {{if false}}
               <div>
                 <div id="top-bar">
                   {{ $File := .File }}
