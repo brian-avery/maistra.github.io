@@ -1,4 +1,4 @@
 +++
-type = "blog"
 title = "Blog"
+type = "docs"
 +++
