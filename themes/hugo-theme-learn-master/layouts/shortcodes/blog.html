@@ -53,7 +53,7 @@
 <script>
     //Note: to debug locally, CORS Proxy must be set and the FEED_URL must be set to a full URL
     //See: https://github.com/bobby-brennan/rss-parser
-    const FEED_URL = '/blog/sources/rhdevel/category/service-mesh/feed/atom/'
+    const FEED_URL = 'http://maistra.io/blog/sources/rhdevel/category/service-mesh/feed/atom/'
 
     let parser = new RSSParser();
     parser.parseURL(FEED_URL, function (err, feed) {
