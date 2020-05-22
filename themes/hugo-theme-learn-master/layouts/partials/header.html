@@ -6,7 +6,7 @@
     {{ .Hugo.Generator }}
     {{ partial "meta.html" . }}
     {{ partial "favicon.html" . }}
-    <title>{{ .Title }} :: {{ .Site.Title }}</title>
+    <title>{{ .Title }}|{{ .Site.Title }}</title>
 
     {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
     <link href="{{"css/nucleus.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
@@ -46,7 +46,11 @@
   {{ end}}
         <section id="body">
         <div id="overlay"></div>
+  {{ if not .IsHome }}
         <div class="padding highlightable">
+  {{else}}
+       <div class="highlightable"></div>
+  {{end}}
               {{if false}}
               <div>
                 <div id="top-bar">
