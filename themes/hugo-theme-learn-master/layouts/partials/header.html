@@ -40,7 +40,10 @@
   <body class="" data-url="{{ .RelPermalink }}">
 
     {{partial "topbar.html" . }}
+    
+  {{ if not .IsHome }}
     {{ partial "menu.html" . }}
+  {{ end}}
         <section id="body">
         <div id="overlay"></div>
         <div class="padding highlightable">
@@ -98,3 +101,4 @@
             {{.value|safeHTML}}
           {{end}}
         {{end}}
+    
