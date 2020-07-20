@@ -1,0 +1,11 @@
+version: 2.0.0
+maistraOperatorVersion: '2.0'
+maistraBranch: 'maistra-2.0'
+maistraURL: "https://maistra-2-0.maistra.io/"
+kialiVersion: 1.12.7
+kialiURL: ""
+istioVersion: 1.6.5
+istioURL: "https://istio.io/news/releases/1.4.x/announcing-1.6.5/"
+jaegerVersion: 1.17
+jaegerURL: "https://github.com/jaegertracing/jaeger/releases/tag/v1.17.0"
+verifiedAgainst: ""
